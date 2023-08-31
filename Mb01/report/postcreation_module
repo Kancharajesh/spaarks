@@ -1,1 +1,811 @@
 
+package tests;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.experimental.theories.PotentialAssignment;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Dimension;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import com.google.common.collect.ImmutableMap;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+import Base.Baseclass;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
+import static io.appium.java_client.touch.offset.PointOption.point;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.android.nativekey.PressesKey;
+
+import modules.login;
+import modules.postcreation;
+
+
+public class postcreation_module extends Baseclass {
+	
+	
+	postcreation_module(){
+	super();
+		
+}
+  AndroidDriver driver;
+    
+    static ExtentReports report;
+	static ExtentTest test;
+	 DesiredCapabilities capabilities=new DesiredCapabilities();
+
+String appiumUrl="http://127.0.0.1:4723/wd/hub";
+	//WebDriver driver;
+
+@BeforeTest
+public void setup() throws MalformedURLException , InterruptedException
+{
+	
+	
+	
+	        DesiredCapabilities capabilities=new DesiredCapabilities();
+	        capabilities.setCapability("automationName","UiAutomator2");
+	        capabilities.setCapability("platformName","android");
+	        capabilities.setCapability("deviceName","962959539700161");
+	        capabilities.setCapability("appPackage","com.osos.spaarksapp");
+	        capabilities.setCapability("appActivity","com.osos.spaarksapp.MainActivity");
+	        capabilities.setCapability("noReset",true);
+	        capabilities.setCapability("autoGrantPermissions", "true");
+	        URL url=new URL(appiumUrl); 
+	        driver=new AndroidDriver(url,capabilities);
+	        login login = new login(driver);
+	        postcreation postcration = new postcreation(driver);
+	        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+	        
+	      
+}
+	     // directory where output is to be printed
+	     // directory where output is to be printed
+	    /*    ExtentReports extent = new ExtentReports();
+	        ExtentSparkReporter spark = new ExtentSparkReporter("index.html");
+	        spark.config().setTheme(Theme.DARK);
+	        spark.config().setDocumentTitle("myrepo");
+	        spark.config().setReportName("demo");
+	        extent.attachReporter(spark);
+
+	     ExtentTest Test = extent.createTest("login");
+	      Test.pass("login test started successfully");
+	      Test.info("URL is loaded");
+	      Test.info("values enter");
+	      Test.pass("login test completed");
+	      
+	      
+	      ExtentTest Test1 = extent.createTest("Homepage");
+	      Test.pass("homepage test started successfully");
+	      Test.info("URL is loaded");
+	      Test.info("values enter");
+	      Test.fail("homepage test fail"); 
+	      
+	      extent.flush();
+	       
+	       
+	        TouchAction touchAction = new TouchAction((PerformsTouchActions) driver);
+	        int startY = 0;
+			int startX = 0;
+			int endx = 0; 
+			int endY = 0;
+			touchAction.press(point(startX, startY)).moveTo(point(endx, endY)).release().perform();
+	       
+	        
+	        
+	  
+	     //   driver.findElement(By.xpath("//*[contains(@text,'view')]")).click();
+	        
+	       // driver.findElement(new AppiumBy.ByAndroidUIAutomator("new Uiscrollable(new uiselector().scrollable(true).instance(0))"+".scrollintoview(new uiselector()"+".textmatches(\""+"Elementtext"+"\").instance(0))"));
+	        
+	      //  driver.findElement(By.xpath("//*[contains(@text,'textclock')]")).click();
+	        
+		} */
+
+/*@AfterMethod
+	public void close()
+	{
+		driver.quit();		
+	// report.endTest(test);
+	//	report.flush();
+	} 
+  */
+
+
+		// post a community  
+
+		@Test  (priority = 1,retryAnalyzer = Retry.class) //pass
+		public void postcreation01() throws Exception  
+		{			
+			postcreation postcration = new postcreation(driver);
+			login login = new login(driver);
+			Thread.sleep(2000);
+			postcration.createspaarkplusbutton();
+			postcration.createspaark(); 
+			postcration.createspaarktextfield(data.getProperty("communityspaark"));
+			postcration.postspaarkbutton();	
+			
+			
+	
+	 } 
+
+		
+		
+		//create a spaark with image and text.
+		@Test  (enabled  = false,retryAnalyzer = Retry.class) //pass
+		public void createapostwithimage() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.clickongallery();
+			postcreation.selectgalleryfirstimage();
+			postcreation.imagenext();
+			postcreation.createspaarktextfield(data.getProperty("communityspaark"));
+			postcreation.post();
+			
+			 ExtentReports extent = new ExtentReports();
+		        ExtentSparkReporter spark = new ExtentSparkReporter("index.html");
+		        spark.config().setTheme(Theme.DARK);
+		        spark.config().setDocumentTitle("myrepo");
+		        spark.config().setReportName("demo");
+		        extent.attachReporter(spark);
+			
+			 ExtentTest Test2 = extent.createTest("createapostwithimage");
+		      Test2.pass("login test started successfully");
+		      Test2.info("URL is loaded");
+		      Test2.info("values enter");
+		      Test2.pass("login test completed");
+					
+		     
+		}
+		
+		
+		// create a poll and save to draft
+		@Test (priority = 3 ,retryAnalyzer = Retry.class)  //pass
+		public void pollwith2options()throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.postapoll();
+			postcreation.pollquestion(data.getProperty("pollquestion"));
+			postcreation.polloptions01(data.getProperty("polloption01"));
+			postcreation.polloptions02(data.getProperty("polloption02"));
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+		
+			
+		}
+		 
+		
+		// post a product
+		@Test  (priority = 4 ,retryAnalyzer = Retry.class) //pass
+		public void postproduct() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.postaproduct();
+			postcreation.producttitle(data.getProperty("producttitle"));
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.productdescription(data.getProperty("producrtdescrption"));
+			postcreation.post();
+			postcreation.clickongallery();
+			postcreation.selectgalleryfouthimage();
+			postcreation.imagenext();
+			postcreation.post();
+			
+		
+		}
+		
+		//save draft to job
+		@Test  (priority = 5 ,retryAnalyzer = Retry.class)
+		public void postjob() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.postajobs();
+			postcreation.jobstitle(data.getProperty("jobtitle"));
+			postcreation.jobssummery(data.getProperty("jobsummery"));
+			postcreation.jobsdescrption(data.getProperty("jobdescription"));
+			postcreation.jobskills(data.getProperty("jobskills"));
+			postcreation.post();
+			postcreation.ClickOn_jobskills();
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.A));
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.BACK));
+			Thread.sleep(3500);
+			
+			postcreation.clickondraftpopup();
+			Thread.sleep(2500);
+			postcreation.savetodraftoption();
+	
+						
+		}
+		
+		// save to market draft.
+		@Test  (priority = 6 ,retryAnalyzer = Retry.class) //pass
+		public void communitypostdraft() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producrtdescrption"));
+			postcreation.clickongallery();
+			postcreation.selectgalleryfirstimage();
+			postcreation.imagenext();
+			postcreation.selectedimage03();
+			postcreation.clickonpostpopup();
+			postcreation.changetomarket();
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+			
+		}
+		
+		
+		//draft poll with 4 options.
+		@Test (priority = 7 ,retryAnalyzer = Retry.class) //pass
+		public void draftpoll() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.postapoll();
+			postcreation.pollquestion(data.getProperty("pollquestion"));
+			postcreation.polloptions01(data.getProperty("polloption01"));
+			postcreation.polloptions02(data.getProperty("polloption02"));
+			postcreation.addanotherpolloption();
+			postcreation.addanotherpolloption();
+			postcreation.polloption03(data.getProperty("polloption03"));
+			postcreation.addanotherpolloption();
+			postcreation.polloption04(data.getProperty("polloption04"));
+			postcreation.clickonpostpopup();
+			postcreation.changetomarket();
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+		
+			
+			
+			
+		}
+		
+		
+		// save to draft product don't add image. 
+		@Test  (priority = 8,retryAnalyzer = Retry.class)  //pass
+		public void createdraftproduct() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.postaproduct();
+			postcreation.producttitle(data.getProperty("producttitle"));
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.productdescription(data.getProperty("producrtdescrption"));
+			postcreation.post();
+			postcreation.reuiredtextalertmsg();
+			
+			boolean visible = postcreation.reuiredtextalertmsg();
+			Assert.assertEquals(visible, true,"Required");
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+	
+						
+		}
+		
+		// save a draft job and reopen that draft job and post.
+		@Test  (priority = 9,retryAnalyzer = Retry.class)  //fail
+		public void draftajob() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.postajobs();
+			postcreation.jobstitle(data.getProperty("jobtitle"));
+			postcreation.jobssummery(data.getProperty("jobsummery"));
+			postcreation.jobskills(data.getProperty("jobskills"));
+			postcreation.post();
+			postcreation.ClickOn_jobskills();
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.A));
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.BACK));
+			Thread.sleep(3500);
+			
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+			
+		/*	postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.clickondraft();	
+			postcreation.draftclickonpupup(); */
+			postcreation.drafttochangetojobs();
+			postcreation.draftjobedit();
+			postcreation.jobsdescrption(data.getProperty("jobdescription"));
+			postcreation.post();
+			
+			
+		}
+		
+		// products error msg is showing correct.
+		@Test  (priority = 10,retryAnalyzer = Retry.class) //pass
+		public void draftrequiredtext() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.postaproduct();
+			postcreation.post();
+			postcreation.producttitle(data.getProperty("producttitle"));
+			postcreation.post();
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.post();
+			postcreation.productdescription(data.getProperty("producrtdescrption"));
+			postcreation.post();
+						
+			boolean visible = postcreation.reuiredtextalertmsg();
+			Assert.assertEquals(visible, true, "Required");
+					
+		}
+		
+		
+		// save a draft poll with four choices. and reopen that delete 4th one and save to draft. 
+		@Test (priority = 11,retryAnalyzer = Retry.class) // pass
+		public void pollsavetodraft01() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.postapoll();
+			postcreation.pollquestion(data.getProperty("pollquestion"));
+			postcreation.polloptions01(data.getProperty("polloption01"));
+			postcreation.polloptions02(data.getProperty("polloption02"));
+			postcreation.addanotherpolloption();
+			postcreation.addanotherpolloption();
+			postcreation.polloption03(data.getProperty("polloption03"));
+			postcreation.addanotherpolloption();
+			postcreation.polloption04(data.getProperty("polloption04"));
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+			
+			Thread.sleep(22500);
+			driver.findElement(By.xpath("//*[contains(@text,'view')]")).click();
+			
+			Thread.sleep(2500);
+			postcreation.draftpostedit();
+			postcreation.closethepolloption();
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+			
+			
+		}
+		
+			// save a draft option first add 4 images and delete 2 images and save to draft. 
+	/*	@Test  (priority = 12,retryAnalyzer = Retry.class)  //fail
+		public void communitypostadd4images()
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.selectedimage01();
+			postcreation.addimages();
+			postcreation.selectgallerysecondimage();
+			postcreation.imagenext();
+			postcreation.selectedimage03();
+			postcreation.imageswipeprevious();
+			postcreation.imageswipeprevious();
+			postcreation.deleteimage();
+			postcreation.deleteimage();
+			postcreation.deleteimage();
+			postcreation.selectedimage03();
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+			
+		
+			
+		} */
+		
+		
+			// first we started normal post and change to products and posted.
+		@Test  (priority = 13,retryAnalyzer = Retry.class)  //fail
+		public void autofillcheckup()
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producrtdescrption"));
+			postcreation.changetoproduct();
+			postcreation.producttitle(data.getProperty("producttitle"));
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.clickongallery();
+			postcreation.selectgalleryfirstimage();
+			postcreation.selectgallerysecondimage();
+			postcreation.selectgalleryfouthimage();
+			postcreation.selectgallerfivthimage();
+			postcreation.imagenext();
+			postcreation.post();
+		
+			
+			
+		}
+		
+			//save a product draft and reopen that edit save to draft and posted.
+		@Test  (priority = 14,retryAnalyzer = Retry.class)  //fail
+		public void clearthedata() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producrtdescrption"));
+			postcreation.changetoproduct();
+			postcreation.productdescriptionclear();
+			postcreation.jobstitle(data.getProperty("producttitle"));
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+			
+		/*	postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.clickondraft();
+			postcreation.draftclickonpupup();
+			postcreation.drafttochangeproducts(); */
+			postcreation.draftproductedit();
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.productdescription(data.getProperty("producrtdescrption"));
+			postcreation.clickongallery();
+			postcreation.selectgalleryfirstimage();
+			postcreation.imagenext();
+			postcreation.post();
+		//	postcreation.clickondraftpopup();
+		//	postcreation.savetodraftoption();
+		//	postcreation.draftproductdelete();
+		//	postcreation.draftpopupdeletetyes();
+			
+		
+		
+		}
+		
+		 	// save product from draft reopen that, post to normal post.
+		@Test (priority = 15,retryAnalyzer = Retry.class) //pass
+		public void editpostedothercategories() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producrtdescrption"));
+			postcreation.changetoproduct();
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.jobstitle(data.getProperty("producttitle"));
+			postcreation.clickondraftpopup();
+			postcreation.savetodraftoption();
+		
+		/*	postcreation.createspaarkplusbutton();
+			postcreation.postaproduct();
+			postcreation.draftproductedit();
+			postcreation.clickongallery();
+			postcreation.selectgalleryfirstimage();
+			postcreation.imagenext();
+			postcreation.post(); */
+			
+		}
+		
+		//community post add images and delete images and post
+		@Test (priority = 16,retryAnalyzer = Retry.class)
+		public void adddeleteimage() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producttitle"));
+			postcreation.selectedimage01();
+			postcreation.selectedimage03();
+			postcreation.imageswipeprevious();
+			postcreation.deleteimage();
+			postcreation.deleteimage();
+			postcreation.changetoproduct();
+			postcreation.clearproductdata();
+			postcreation.clearpostdatayes();
+			postcreation.selectedimage01();
+			postcreation.selectedimage03();
+			postcreation.imageswipeprevious();
+			postcreation.deleteimage();
+			postcreation.deleteimage();
+			postcreation.selectedimage01();
+			postcreation.selectedimage03();
+			postcreation.imageswipeprevious();
+			postcreation.deleteimage();
+			postcreation.deleteimage();
+			postcreation.selectedimage01();
+			postcreation.selectedimage03();
+			postcreation.imageswipeprevious();
+			postcreation.deleteimage();
+			postcreation.deleteimage();
+			postcreation.clickongallery();
+			postcreation.selectgalleryfouthimage();
+			postcreation.imagenext();
+			postcreation.createspaarktextfieldclear();
+			postcreation.post();
+		
+		}
+		
+			// change categories and clear data.
+		@Test (priority = 17,retryAnalyzer = Retry.class)  //pass
+		public void changecategories() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producttitle"));
+			postcreation.postapoll();
+			postcreation.clearpolldata();
+			postcreation.clearpostdatayes();
+			postcreation.post();
+		
+			
+			
+		}
+		
+			// change to the categories and reopen poll and the poll question options is showing values.
+	/*	@Test (priority = 18)
+		public void changecategoriescleardata()throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.createspaarktextfield(data.getProperty("producttitle"));
+			postcreation.postapoll();
+			postcreation.pollquestion(data.getProperty("pollquestion"));
+			postcreation.polloptions01(data.getProperty("polloption01"));
+			postcreation.polloptions02(data.getProperty("polloption02"));
+			postcreation.changetoproduct();
+			postcreation.producttitle(data.getProperty("producttitle"));
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.clickongallery();
+			postcreation.selectgalleryfouthimage();
+			postcreation.imagenext();
+			postcreation.changetojobs();
+			postcreation.jobsdescrption(data.getProperty("jobdescription"));
+			postcreation.clearjobsdata();;
+			postcreation.clearpostdatayes();
+			postcreation.postapoll();
+			postcreation.post();
+			
+			String  visible = postcreation.polloption01_getText();
+			System.out.println(visible);
+			Assert.assertEquals(visible, "");
+		
+		}  */
+		
+		
+			//anonymously text post.
+		@Test (priority = 19,retryAnalyzer = Retry.class) //pass
+		public void anonymouslypost()throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.createspaark();
+			postcreation.audiancepopup();
+			postcreation.audiancekeepmehidden();
+			postcreation.createspaarktextfield(data.getProperty("communityspaark"));
+			postcreation.clickoncontactpopup();
+			postcreation.anonymouschatoption();
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.BACK));
+			postcreation.post();
+					
+		}
+		
+			// anonymously to normal market post.
+		@Test (priority = 20,retryAnalyzer = Retry.class) //pass
+		public void anynomuslyposttonormalpost() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton(); 
+			postcreation.postaanonymously();
+			postcreation.createspaarktextfield(data.getProperty("communityspaark"));
+			postcreation.audiancepopup();
+			postcreation.audiancepublic();
+			postcreation.selectedimage01();
+			postcreation.clickonpostpopup();
+			postcreation.changetomarket();
+			postcreation.deleteimage();
+			postcreation.clickoncontactpopup();
+			postcreation.contactspaarkcall();
+			((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.BACK));
+			
+			String visiable = postcreation.createspaarktextfield_gettext();
+			System.out.println(visiable);
+			Assert.assertEquals(visiable, "Altina Schinasi was a US sculptor, filmmaker, entrepreneur, window dresser, designer, and inventor. She was best known for designing what she called the \"Harlequin eyeglass frame\", popularly known as cat-eye glasses.");
+			
+			
+		}
+	
+		
+		@Test (priority = 21,retryAnalyzer = Retry.class) //fail
+		public void afterclearingdata() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton();
+			postcreation.postaproduct();
+			postcreation.producttitle(data.getProperty("producttitle"));
+			postcreation.productprice(data.getProperty("productprice"));
+			postcreation.productdescription(data.getProperty("producrtdescrption"));
+		/*	postcreation.clickongallery();
+			postcreation.selectgalleryfirstimage();
+			postcreation.imagenext(); */
+			postcreation.clearproductdata();
+			postcreation.clearpostdatayes();
+			postcreation.createspaarktextfield(data.getProperty("producrtdescrption"));
+		
+			
+			String visible = postcreation.createspaarktextfield_gettext();
+			System.out.println(visible);
+			Assert.assertEquals(visible,"visible");
+			
+			
+		}
+		
+		@Test  (priority = 21,retryAnalyzer = Retry.class)  //pass
+		public void changetofileds() throws Exception 
+		{  
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);             
+			postcreation.createspaarkplusbutton();
+			postcreation.createspaark();
+			postcreation.postapoll();
+			postcreation.pollquestion(data.getProperty("pollquestion"));
+			postcreation.addanotherpolloption();
+			postcreation.addanotherpolloption();
+			postcreation.addanotherpolloption();
+			postcreation.polloptions01(data.getProperty("polloption01"));
+			postcreation.polloptions02(data.getProperty("polloption02"));
+			postcreation.polloption04(data.getProperty("polloption04"));
+			postcreation.polloptionsclear();
+			
+			String scrollElement = "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"Progress Bar\").instance(0))";
+			
+		}
+		
+		// open jobs darft > change to community post and post.
+		@Test (priority = 22,retryAnalyzer = Retry.class)
+		public void opendraftposteditandchangetonormal() throws Exception
+		{
+		
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton();
+			postcreation.postajobs();
+			postcreation.clickondraft();
+			postcreation.draftjobedit();
+			postcreation.clearjobsdata();
+			postcreation.clearpostdatayes();
+			postcreation.createspaarktextfield(data.getProperty("producrtdescrption"));
+			postcreation.post();
+			
+				
+		}
+		
+		//save draft poll and update that poll and post. 
+		@Test(priority = 23,retryAnalyzer = Retry.class)
+		public void draftpollandpost() throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			postcreation.createspaarkplusbutton();
+			postcreation.createspaark();
+			postcreation.postapoll();
+			postcreation.pollquestion(data.getProperty(""));
+			postcreation.polloptions01(data.getProperty(""));
+			postcreation.polloptions01(data.getProperty(""));
+			postcreation.addanotherpolloption();
+			postcreation.addanotherpolloption();
+			postcreation.polloption03(data.getProperty(""));
+			postcreation.polloption04(data.getProperty(""));
+			
+			postcreation.clickoncontactpopup();
+			postcreation.savetodraftoption();
+			postcreation.draftpostedit();
+			postcreation.closethepolloption();
+			postcreation.post();
+			
+			
+		}
+		
+		
+				//checking the scroll action
+		@Test (enabled  = false,retryAnalyzer = Retry.class)
+		public void scroll()throws Exception
+		{
+			
+			
+		login login = new login(driver);
+		postcreation postcreation = new postcreation(driver);
+	/*	postcreation.createspaarkplusbutton();
+		postcreation.createspaark();
+		postcreation.clickondraft(); */
+		
+		Thread.sleep(3500);
+		String seemore = "see more";
+		MobileElement elementToClick = (MobileElement)driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + seemore + "\").instance(0))"));		
+		elementToClick.click();
+		}
+		
+		
+		@Test (enabled  = false,retryAnalyzer = Retry.class)
+		public void testSwipeActions()throws Exception
+		{
+			
+			login login = new login(driver);
+			postcreation postcreation = new postcreation(driver);
+			
+			/*swipeLeft();
+			
+			swiperight();*/
+			
+		}
+		
+		
+}
