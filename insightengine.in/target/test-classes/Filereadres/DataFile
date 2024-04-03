@@ -1,0 +1,100 @@
+browser=chrome
+Website=https://insightengine.in
+
+	//main buttons.
+InsightEngine=Insight Engine
+Pricing=Pricing
+Resources=Resources
+SuperJApp=Super J App
+GetStarted=Get Started
+
+
+	//Get Started(Create an account).
+Name=(//input[@type='text'])[1]
+Designation=(//input[@type='text'])[2]
+Company=(//input[@type='text'])[3]
+Email=input[name='email']
+ContactNumber=input[type='tel']
+Submit=(//button[@type='submit'])[1]
+MainTitle=//*[@id="consumerresearchisfinallysimple"]/div[2]/div/div[1]/h1
+
+	// SIGN IN
+SignIn=Sign In
+SignInMobileNumber=input[name='identifier']
+SignInSendOTP=(//button[@type='submit'])[1]
+SignInEnterOTP=input[type='text']
+SigninVerifyOTP=(//button[@type='submit'])[1]
+
+
+
+	// VALID & INVALID Data
+validName=Rajesh.
+ValidCompanyName=JM
+ValidDesinatio=QA
+ValidEmail=rajesh@jupitermeta.io
+ValidMobileNumber=9876432333
+
+INValidName=qwerty.
+InvalidCompanyName=!@#123
+InvalidDesignation=123332!@#
+InvalidEmail=wqertyiiokj 
+InvalidNumber=9878987
+
+
+
+	//INSIGHT ENGINE Email Validation.
+EmailtextFileds=input[type='email']
+EmailSubmit=button[type='submit']
+EmailErrorMSG=Please enter a valid email address.
+EmaiSucessMSG=Thanks for sharing! Our team will reach out to you shortly.
+
+Getstarted=(//button[@type='button'])[1]
+HowitWorks=(//button[@type='button'])[2]
+
+
+	//Resources PAGE.
+	
+DownloadReport=/html/body/main/div[1]/div[1]/div/button		
+
+// Download the Report.	
+ReportName=input[name='name']
+ReportEmail=input[name='email']
+ReoprtDesignation=input[name='designation']
+ReportCompany=input[name='company']
+ReportDownloadReport=(//button[@type='submit'])[1]
+DownloadReportButton=Download Report
+ReportDownloadReport1=/html/body/main/div[1]/div[2]/div/div/div/div[2]/form/div[2]
+
+	// Validation error messages.
+NameValidtion=Contact name is required	
+NameValidtion1=/html/body/main/div[1]/div[2]/div/div/div/div[2]/form/div[1]/div[1]/p
+EmailValidtion=Email is required
+EmailValidtion1=/html/body/main/div[1]/div[2]/div/div/div/div[2]/form/div[1]/div[2]/p
+DesignationValidation=Designation is required
+DesignationValidation1=/html/body/main/div[1]/div[2]/div/div/div/div[2]/form/div[1]/div[3]/p
+CompanynameValidation=Company name is required
+CompanynameValidation1=/html/body/main/div[1]/div[2]/div/div/div/div[2]/form/div[1]/div[4]/p
+
+
+// REPORT & DATA.
+ReportNameText=Rajesh
+ReportEmailtext=rajesh@gm.com
+ReoprtDesignationtext=QA
+ReportCompanytext=JM
+	
+
+	//Resources main Op	tions.
+CaseStudy=Case Study
+InsightReport=Insight Report
+Bitesizesnippets=Bite size snippets
+Blogs=Blogs
+
+	//CaseStudy.
+CaseStudyFood&beverages=/html/body/main/div[1]/div[4]/div/div[1]
+CaseStdyFMCG=/html/body/main/div[1]/div[4]/div/div[2]
+
+   //InsightReport
+InsightReport&DownloadReport=/html/body/main/div[1]/div[4]/div/div[1]/div[3]
+
+   //Blogs
+Blogs&consumer=/html/body/main/div[1]/div[4]/div/div
