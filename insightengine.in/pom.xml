@@ -28,13 +28,7 @@
       <scope>test</scope>
     </dependency>
     
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-<dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-      <version>7.8.0</version>
-    <scope>test</scope>
-</dependency>
+   
 <!-- https://mvnrepository.com/artifact/ru.sbtqa/webdrivermanager -->
 <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 <dependency>
@@ -64,12 +58,7 @@
     <version>8.3.0</version>
 </dependency>  
 
-<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-<dependency>
-    <groupId>io.github.bonigarcia</groupId>
-    <artifactId>webdrivermanager</artifactId>
-    <version>5.3.2</version>
-</dependency>
+
 
   <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
@@ -97,26 +86,19 @@
   </dependencies>
   
 	<build>
-		<plugins>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+                <systemPropertyVariables>
+                    <environment>development</environment> <!-- Set your system property here -->
+                </systemPropertyVariables>
+            </configuration>
+        </plugin>
+    </plugins>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version>
-				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
-					
-					<systemPropertyVariables>
-					System.getProperty("environment");
-					
-					</systemPropertyVariables>
-					
-				</configuration>
-			</plugin>
-
-		</plugins>
 
 
 	</build>
